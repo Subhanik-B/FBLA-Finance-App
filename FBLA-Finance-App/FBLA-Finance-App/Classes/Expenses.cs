@@ -6,18 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FBLA_Finance_App.Classes {
+    // Holds data for the Expenses
     public class Expenses {
-        public Expenses(string expenseType, DateTime date, float amount, PaymentCycle paymentCycle = PaymentCycle.Once) =>
-            (ExpenseType, Date, Amount, PaymentCycle) = (expenseType, date, amount, paymentCycle);
-        public void Deconstruct(out string expenseType, out DateTime date, out float amount, out PaymentCycle paymentCycle) =>
-             (expenseType, date, amount, paymentCycle) = (ExpenseType, Date, Amount, PaymentCycle);
+        public Expenses(ExpenseType expenseType, string specificExpenseType, DateTime date, decimal amount, PaymentCycle paymentCycle = PaymentCycle.Once) =>
+            (ExpenseType, SpecificExpenseType, Date, Amount, PaymentCycle) = (expenseType, specificExpenseType, date, amount, paymentCycle);
+        public void Deconstruct(out ExpenseType expenseType, out string specificExpenseType, out DateTime date, out decimal amount, out PaymentCycle paymentCycle) =>
+             (expenseType, specificExpenseType, date, amount, paymentCycle) = (ExpenseType, SpecificExpenseType, Date, Amount, PaymentCycle);
 
-        public string ExpenseType { get; }
+        public ExpenseType ExpenseType { get; }
+        public string SpecificExpenseType { get; }
         public DateTime Date { get; }
-        public float Amount { get; }
+        public decimal Amount { get; }
         public PaymentCycle PaymentCycle { get; }
         
         public override string ToString() =>
-            $"{ExpenseType}|{Date}|{Amount}|{PaymentCycle}";
+            $"{(int)ExpenseType}|{SpecificExpenseType}|{Date.Ticks}|{Amount}|{(int)PaymentCycle}";
     }
 }

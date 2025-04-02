@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FBLA_Finance_App.Enums {
+    // Options for Expense Types
     public enum ExpenseType {
         Obligations = 0,
         Health = 1,

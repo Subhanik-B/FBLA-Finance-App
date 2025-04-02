@@ -6,17 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FBLA_Finance_App.Classes {
+    //Holds data for the income stuff
     public class Income {
-        public Income(float amount, DateTime date, PaymentCycle paymentCycle = PaymentCycle.Once) =>
-            (Amount, Date, PaymentCycle) = (amount, date, paymentCycle);
-        public void Deconstruct(out float amount, out PaymentCycle paymentCycle) =>
-            (amount, paymentCycle) = (Amount, PaymentCycle);
+        public Income(IncomeType incomeType, DateTime date, decimal amount, PaymentCycle paymentCycle = PaymentCycle.Once) =>
+            (IncomeType, Amount, Date, PaymentCycle) = (incomeType, amount, date, paymentCycle);
+        public void Deconstruct(out IncomeType incomeType, out PaymentCycle paymentCycle, out decimal amount) =>
+            (incomeType, amount, paymentCycle) = (IncomeType, Amount, PaymentCycle);
 
+        public IncomeType IncomeType { get; }
         public DateTime Date { get; }
-        public float Amount { get; }
+        public decimal Amount { get; }
         public PaymentCycle PaymentCycle { get; }
 
         public override string ToString() =>
-            $"{Date.Ticks}|{Amount}|{PaymentCycle}";
+            $"{(int)IncomeType}|{Date.Ticks}|{Amount}|{(int)PaymentCycle}";
     }
 }
